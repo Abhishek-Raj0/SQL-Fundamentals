@@ -1,1 +1,2 @@
 -- SELECT '...';
+SELECT 'Hello, SQL!';
