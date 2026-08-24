@@ -1,11 +1,11 @@
-CREATE TABLE users (
-    id INTEGER PRIMARY KEY,
-    email TEXT NOT NULL UNIQUE,
-    age INTEGER CHECK (age >= 0 AND age < 150),
-    role TEXT NOT NULL DEFAULT 'member'
-);
+CREATE TABLE users (id INTEGER, name TEXT, nickname TEXT);
+INSERT INTO users VALUES
+    (1, 'Ada Lovelace', 'Ada'),
+    (2, 'Bob', NULL),
+    (3, 'Carol', 'Cee');
 
-INSERT INTO users (id, email, age) VALUES (1, 'ada@x.io', 36);
-INSERT INTO users (id, email, age, role) VALUES (2, 'bob@x.io', 50, 'admin');
-
-SELECT id, email, age, role FROM users ORDER BY id;
+-- TODO: one line per user, in id order: their nickname when they have one,
+--       otherwise their name. One column, and no blanks in the output.
+SELECT COALESCE(nickname, name) AS display_name
+FROM users
+ORDER BY id;
